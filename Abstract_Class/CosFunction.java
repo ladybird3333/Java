@@ -1,0 +1,22 @@
+package com.company;
+
+public class CosFunction extends AbstractFunction {
+
+    double f(double x)
+    {
+        return Math.cos(x);
+    }
+
+
+    public static void main(String[] args) {
+        CosFunction f=new CosFunction();
+        AbstractFunction.precision=1.0e-5;
+        System.out.println("\ncos(x) function\n");
+        System.out.println("\n ***Calculating the root of an equation on the interval [0,1] - Bisection method***");
+        System.out.println(f.getRootBisection(1, 2));
+        System.out.println("\n ***Calculation of the definite integral on the interval [1,2] when divided into 3 figures - Trapezoidal method: ***");
+        System.out.println(f.trapezoidal(1, 2, 3));
+        System.out.println("\n ***Calculating the root of an equation on the interval [0,1] - Secant method ***");
+        System.out.println(f.Secant_Method(1, 2));
+    }
+}
