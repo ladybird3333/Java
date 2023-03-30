@@ -34,7 +34,6 @@ public abstract class AbstractFunction {
                 return xmid;
         }
         return (0.5) * (xmax + xmin);
-
     }
 
     public double trapezoidal(float a, float b, float n) {
