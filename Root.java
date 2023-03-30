@@ -1,7 +1,4 @@
-/* Autor: Maria Mucha
-Data: 19.10.2021
-Program obliczajacy n-ty pierwiastek z liczby
- */
+// program liczący pierwiastek n-tego stopnia (gdzie n to dowolna liczba naturalna) ze wskazanej liczby bez użycia funkcji z klasy java.lang.Math
 
 package com.company;
 
