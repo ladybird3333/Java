@@ -1,0 +1,117 @@
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+
+class Calculator extends JFrame implements ActionListener {
+
+    JButton add, subtract, multiply, divide, equal, clear;
+    JButton[] button = new JButton[10];
+    JTextField text;
+
+
+    public Calculator() {
+
+        setLayout(new BorderLayout());
+        JPanel p = new JPanel();
+
+        text = new JTextField(15);
+        p.add(text);
+        for (int i = 0; i <= 9; i++) {
+            button[i] = new JButton(i + "");
+            p.add(button[i]);
+            button[i].addActionListener(this);
+        }
+        add = new JButton("+");
+        p.add(add);
+        add.addActionListener(this);
+
+        subtract = new JButton("-");
+        p.add(subtract);
+        subtract.addActionListener(this);
+
+        multiply = new JButton("*");
+        p.add(multiply);
+        multiply.addActionListener(this);
+
+        divide = new JButton("/");
+        p.add(divide);
+        divide.addActionListener(this);
+
+        equal = new JButton("=");
+        p.add(equal);
+        equal.addActionListener(this);
+
+        clear = new JButton("C");
+        p.add(clear);
+        clear.addActionListener(this);
+
+
+        JFrame frame = new JFrame();
+        text.setBackground(Color.white);
+        p.setBackground(Color.black);
+        frame.add(p);
+        frame.setVisible(true);
+        frame.setSize(180, 250);
+
+    }
+
+    char operator;
+    int i, value1, value2;
+    double result;
+
+    public void actionPerformed(ActionEvent ae) {
+        JButton press_button = (JButton) ae.getSource();
+        if (press_button == clear) {
+            result = value1 = value2 = 0;
+            text.setText("");
+        } else if (press_button == equal) {
+            value2 = Integer.parseInt(text.getText());
+            equation();
+            text.setText("" + result);
+        } else {
+            boolean flag = false;
+            if (press_button == add) {
+                operator = '+';
+                flag = true;
+            }
+            if (press_button == subtract) {
+                operator = '-';
+                flag = true;
+            }
+            if (press_button == multiply) {
+                operator = '*';
+                flag = true;
+            }
+            if (press_button == divide) {
+                operator = '/';
+                flag = true;
+            }
+
+            if (!flag) {
+                for (i = 0; i < 10; i++) {
+                    if (press_button == button[i]) {
+                        String t = text.getText();
+                        t += i;
+                        text.setText(t);
+                    }
+                }
+            } else {
+                value1 = Integer.parseInt(text.getText());
+                text.setText("");
+            }
+        }
+    }
+
+    void equation() {
+        switch (operator) {
+            case '+' -> result = value1 + value2;
+            case '-' -> result = value1 - value2;
+            case '*' -> result = value1 * value2;
+            case '/' -> result = (double)value1 / (double)value2;
+        }
+    }
+
+    public static void main(String[] arg) {
+        new Calculator();
+    }
+}
